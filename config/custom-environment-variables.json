@@ -2,6 +2,11 @@
   "server": {
     "port": "PORT"
   },
+  "meshblu": {
+    "protocol": "MESHBLU_PROTOCOL",
+    "hostname": "MESHBLU_HOSTNAME",
+    "port": "MESHBLU_PORT"
+  },
   "logger": {
     "level": "LOGGER_LEVEL"
   }

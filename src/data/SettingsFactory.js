@@ -7,6 +7,11 @@ import Settings from 'data/Settings';
 const serverSchema = Joi.object().keys({
   port: Joi.number().port().required(),
 });
+const meshbluSchema = Joi.object().keys({
+  protocol: Joi.string().valid(['http', 'https']).required(),
+  hostname: Joi.string().required(),
+  port: Joi.number().port().required(),
+});
 const levels = ['error', 'warn', 'info', 'verbose', 'debug', 'silly'];
 const loggerSchema = Joi.object().keys({
   level: Joi.string().valid(levels).required(),
@@ -15,14 +20,21 @@ const loggerSchema = Joi.object().keys({
 class SettingsFactory {
   create() {
     const server = this.loadServerSettings();
+    const meshblu = this.loadMeshbluSettings();
     const logger = this.loadLoggerSettings();
-    return new Settings(server, logger);
+    return new Settings(server, meshblu, logger);
   }
 
   loadServerSettings() {
     const server = config.get('server');
     this.validate('server', server, serverSchema);
     return server;
+  }
+
+  loadMeshbluSettings() {
+    const meshblu = config.get('meshblu');
+    this.validate('meshblu', meshblu, meshbluSchema);
+    return meshblu;
   }
 
   loadLoggerSettings() {

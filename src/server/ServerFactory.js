@@ -1,14 +1,16 @@
 import Server from 'server/Server';
 
 class ServerFactory {
-  constructor(settings, loggerFactory) {
+  constructor(settings, bootstrapInteractor, loggerFactory) {
     this.settings = settings;
+    this.bootstrapInteractor = bootstrapInteractor;
     this.loggerFactory = loggerFactory;
   }
 
   create() {
     return new Server(
       this.settings.server.port,
+      this.bootstrapInteractor,
       this.loggerFactory.create('Server'),
     );
   }

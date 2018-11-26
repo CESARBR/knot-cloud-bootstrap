@@ -3,8 +3,9 @@ import good from 'good';
 import goodWinston from 'hapi-good-winston';
 
 class Server {
-  constructor(port, logger) {
+  constructor(port, bootstrapController, logger) {
     this.port = port;
+    this.bootstrapController = bootstrapController;
     this.logger = logger;
   }
 
@@ -20,6 +21,9 @@ class Server {
       },
     });
 
+    const routes = this.createRoutes();
+    server.route(routes);
+
     const options = {
       ops: false,
       reporters: {
@@ -33,6 +37,16 @@ class Server {
 
     await server.start();
     this.logger.info(`Listening on ${this.port}`);
+  }
+
+  createRoutes() {
+    return [
+      {
+        method: 'POST',
+        path: '/bootstrap',
+        handler: this.bootstrapController.bootstrap.bind(this.bootstrapController),
+      },
+    ];
   }
 }
 
