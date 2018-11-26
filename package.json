@@ -1,6 +1,6 @@
 {
   "name": "@cesarbr/knot-cloud-bootstrap",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "KNoT Cloud bootstrap service",
   "repository": {
     "type": "git",
