@@ -35,6 +35,7 @@
     "config": "^3.0.0",
     "good": "^8.1.1",
     "hapi": "^17.8.1",
+    "hapi-and-healthy": "^7.0.3",
     "hapi-good-winston": "^2.1.0",
     "joi": "^14.3.0",
     "lodash": "^4.17.11",
