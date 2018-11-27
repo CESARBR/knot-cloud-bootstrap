@@ -8,6 +8,9 @@ import BootstrapController from './controllers/BootstrapController';
 
 async function main() {
   try {
+    // eslint-disable-next-line no-console
+    console.log(`Starting '${process.env.NODE_ENV}' configuration`);
+
     const settings = new SettingsFactory().create();
     const loggerFactory = new LoggerFactory(settings);
     const meshbluHttp = new MeshbluHttpFactory(settings).create();
